@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wedding Photography Client Questionnaire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f9f3f3;
+      color: #333;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      color: #b88b4a;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      border-bottom: 1px solid #e0d4c5;
+      padding-bottom: 0.5rem;
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      color: #6b4e24;
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.3rem;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #e0d4c5;
+      border-radius: 8px;
+      background-color: #fff;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
+    }
+
+    textarea {
+      min-height: 100px;
+    }
+
+    button {
+      background-color: #b88b4a;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 2rem auto;
+    }
+
+    button:hover {
+      background-color: #a4783e;
+    }
+
+    form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Wedding Photography Questionnaire</h1>
+  <form action="https://formspree.io/f/xzzryrpe" method="POST">
+
+    <h2>Personal Information</h2>
+    <label>Full Names of the Couple</label>
+<input type="text" name="Name 1" placeholder="Jane Doe" required style="display: block; margin-bottom: 0.5rem;">
+<input type="text" name="Name 2" placeholder="John Doe" required style="display: block; margin-bottom: 0.5rem;">
+
+
+    <label>Email Address(es)</label>
+<div id="email-container">
+  <input 
+    type="email" 
+    name="Email 1" 
+    placeholder="username@myemail.com" 
+    required 
+    style="display: block; margin-bottom: 0.5rem;">
+</div>
+
+<div style="text-align: left; margin-top: 0.3rem;">
+  <button
+    type="button"
+    onclick="addEmail()"
+    style="
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      color: #333;
+      cursor: pointer;
+    "
+  >
+    Add another
+  </button>
+</div>
+
+<script>
+  function addEmail() {
+    const container = document.getElementById('email-container');
+    const newInput = document.createElement('input');
+    newInput.type = 'email';
+    newInput.name = `Email ${container.children.length + 1}`;
+    newInput.placeholder = "username@myemail.com"; // Placeholder for new email input
+    newInput.required = true;
+    newInput.style = 'display: block; margin-bottom: 0.5rem;';
+    container.appendChild(newInput);
+  }
+</script>
+
+
+   <label>Phone Number(s)</label>
+<div id="phone-container">
+  <input 
+    type="tel" 
+    name="Phone 1" 
+    placeholder="(012)345-6789" 
+    style="display: block; margin-bottom: 0.5rem;">
+</div>
+
+<div style="text-align: left; margin-top: 0.3rem;">
+  <button
+    type="button"
+    onclick="addPhoneNumber()"
+    style="
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      color: #333;
+      cursor: pointer;
+    "
+  >
+    Add another
+  </button>
+</div>
+
+<script>
+  function addPhoneNumber() {
+    const container = document.getElementById('phone-container');
+    const newInput = document.createElement('input');
+    newInput.type = 'tel';
+    newInput.name = `Phone ${container.children.length + 1}`;
+    newInput.placeholder = "(012)345-6789"; // Add placeholder for new fields
+    newInput.style = 'display: block; margin-bottom: 0.5rem;';
+    container.appendChild(newInput);
+  }
+</script>
+
+
+<script>
+  function addPhoneNumber() {
+    const container = document.getElementById('phone-container');
+    const newInput = document.createElement('input');
+    newInput.type = 'tel';
+    newInput.name = `Phone ${container.children.length + 1}`;
+    newInput.style = 'display: block; margin-bottom: 0.5rem;';
+    container.appendChild(newInput);
+  }
+</script>
+
+    
+	  
+	  <label>Who should I talk to on the wedding day if you’re unavailable?</label>
+<input type="text" name="Day-of Contact Name" placeholder="Name and role (e.g., Maid of Honor, Planner)" style="display: block; margin-bottom: 0.5rem;">
+<input type="tel" name="Day-of Contact Phone" placeholder="Phone number" style="display: block; margin-bottom: 1rem;">
+
+
+    <h2>Wedding Details</h2>
+    <label>Wedding Date</label>
+    <input type="date" name="Wedding Date">
+
+    <label>Wedding Venue(s)</label>
+<div id="venues-container">
+  <input type="text" name="Venues" placeholder="Willow Creek Barn, 123 This Way Dr." style="display: block; margin-bottom: 0.5rem;">
+</div>
+
+<div style="text-align: left; margin-top: 0.3rem;">
+  <button
+    type="button"
+    onclick="addVenue()"
+    style="
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      color: #333;
+      cursor: pointer;
+    "
+  >
+    Add another
+  </button>
+</div>
+
+<script>
+  function addVenue() {
+    const container = document.getElementById('venues-container');
+    const newInput = document.createElement('input');
+    newInput.type = 'text';
+    newInput.name = 'Venues';
+    newInput.style = 'display: block; margin-bottom: 0.5rem;';
+    container.appendChild(newInput);
+  }
+</script>
+
+
+   <label>Ceremony Time</label>
+<input 
+  type="time" 
+  name="Ceremony Time" 
+  required 
+  style="display: block; margin-bottom: 0.5rem;">
+
+
+    <label>Reception Time</label>
+<input 
+  type="time" 
+  name="Reception Time" 
+  required 
+  style="display: block; margin-bottom: 0.5rem;">
+
+
+    <h2>Photography Details</h2>
+    <label>Estimated Number of Guests</label>
+    <input type="number" name="Guests" placeholder="200">
+
+    <label>Spouse 1 Party Size</label>
+<input 
+  type="number" 
+  name="Bridal Party Size" 
+  placeholder="e.g., 8" 
+  required 
+  min="1" 
+  style="display: block; margin-bottom: 0.5rem;">
+
+<label>Spouse 2 Party Size</label>
+<input 
+  type="number" 
+  name="Groom Party Size" 
+  placeholder="e.g., 8" 
+  required 
+  min="1" 
+  style="display: block; margin-bottom: 0.5rem;">
+
+
+
+    <label>Family/Group Photos (List important family/groupings you want photos of)</label>
+<textarea 
+  name="Family Photos" 
+  placeholder="e.g., &#10;Newly Weds, Mom, Dad, Brother, Sister, Nieces, Nephews, Grandma, Grandpa&#10;Newly Weds, Maid of Honor, Best Man &#10;Newly Weds, Aunts, Uncles, Cousins"
+  style="display: block; margin-bottom: 0.5rem; font-family: inherit; font-size: 1rem; font-weight: normal; line-height: 1.2;"
+></textarea>
+
+
+    <label>Special Moments (any special moments you want me to focus on?)</label>
+<div id="special-moments-container">
+  <input type="text" name="Special Moments 1" placeholder="e.g., first look" style="display: block; margin-bottom: 0.5rem;">
+  <input
+    type="text"
+    name="Special Moments 2"
+    placeholder="e.g., special dance"
+    style="display: block; margin-bottom: 0.5rem;"
+  >
+  <input
+    type="text"
+    name="Special Moments 3"
+    placeholder="e.g., specific traditions"
+    style="display: block; margin-bottom: 1rem;"
+  >
+</div>
+
+<div style="text-align: left; margin-top: 0.3rem;">
+  <button
+    type="button"
+    onclick="addSpecialMoment()"
+    style="
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      color: #333;
+      cursor: pointer;
+    "
+  >
+    Add another
+  </button>
+</div>
+
+<script>
+  function addSpecialMoment() {
+    const container = document.getElementById('special-moments-container');
+    const newInput = document.createElement('input');
+    newInput.type = 'text';
+    newInput.name = `Special Moments ${container.children.length + 1}`;
+    newInput.style = 'display: block; margin-bottom: 0.5rem;';
+    container.appendChild(newInput);
+  }
+</script>
+
+
+
+
+    <label>Photography Style Preference</label>
+<input 
+  type="text" 
+  name="Style Preference" 
+  placeholder="e.g., candid, traditional, artistic, photojournalistic" 
+  style="display: block; margin-bottom: 0.5rem;">
+
+
+    <label>Must-Have Shots (specific shots or moments you definitely want captured)</label>
+<div id="must-have-shots-container">
+  <input 
+    type="text" 
+    name="Must-Have Shot 1" 
+    placeholder="e.g., First kiss, walking down the aisle" 
+    style="display: block; margin-bottom: 0.5rem;">
+</div>
+
+<div style="text-align: left; margin-top: 0.3rem;">
+  <button
+    type="button"
+    onclick="addMustHaveShot()"
+    style="
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      color: #333;
+      cursor: pointer;
+    "
+  >
+    Add another
+  </button>
+</div>
+
+<script>
+  function addMustHaveShot() {
+    const container = document.getElementById('must-have-shots-container');
+    const input = document.createElement('input');
+    const count = container.children.length + 1;
+
+    input.type = 'text';
+    input.name = `Must-Have Shot ${count}`;
+    input.placeholder = "";
+    input.style = 'display: block; margin-bottom: 0.5rem;';
+    
+    container.appendChild(input);
+  }
+</script>
+
+
+<script>
+  function addMustHaveShot() {
+    const container = document.getElementById('must-have-shots-container');
+    const newTextarea = document.createElement('textarea');
+    const count = container.children.length + 1;
+
+    newTextarea.name = `Must-Have Shot ${count}`;
+    newTextarea.placeholder = "";
+    newTextarea.rows = 1;
+    newTextarea.style = 'display: block; margin-bottom: 0.5rem; resize: vertical;';
+    
+    container.appendChild(newTextarea);
+  }
+</script>
+
+
+    <h2>Logistics</h2>
+    <label>Preparation Location – Spouse 1</label>
+<input 
+  type="text" 
+  name="Preparation Location Spouse 1" 
+  placeholder="e.g., Suite 123" 
+  style="display: block; margin-bottom: 0.5rem;">
+
+<label>Preparation Location – Spouse 2</label>
+<input 
+  type="text" 
+  name="Preparation Location Spouse 2" 
+  placeholder="e.g., Airbnb, 123 That Way St." 
+  style="display: block; margin-bottom: 1rem;">
+
+
+    <h2>Additional Services</h2>
+    <label>Are you interested in an engagement photo session? (not included)</label>
+<div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
+  <label style="display: flex; align-items: center; gap: 0.3rem;">
+    <input type="radio" name="Engagement Session" value="Yes"> Yes
+  </label>
+  <label style="display: flex; align-items: center; gap: 0.3rem;">
+    <input type="radio" name="Engagement Session" value="No"> No
+  </label>
+</div>
+
+    <h2>Timeline</h2>
+   <label>Wedding Day Timeline</label>
+<textarea 
+  name="Timeline" 
+  placeholder="1:00pm – Getting Ready&#10;3:00pm – Ceremony&#10;5:00pm – Reception" 
+  style="display: block; margin-bottom: 0.5rem; font-family: inherit; font-size: 1rem;"></textarea>
+
+
+   <label>Reception events you definitely want photographed</label>
+<div id="reception-events-container">
+  <input 
+    type="text" 
+    name="Reception Event 1" 
+    placeholder="e.g., speeches, cake cutting, bouquet toss" 
+    style="display: block; margin-bottom: 0.5rem;">
+</div>
+
+<div style="text-align: left; margin-top: 0.3rem;">
+  <button
+    type="button"
+    onclick="addReceptionEvent()"
+    style="
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      color: #333;
+      cursor: pointer;
+    "
+  >
+    Add another
+  </button>
+</div>
+
+<script>
+  function addReceptionEvent() {
+    const container = document.getElementById('reception-events-container');
+    const input = document.createElement('input');
+    const count = container.children.length + 1;
+
+    input.type = 'text';
+    input.name = `Reception Event ${count}`;
+    input.placeholder = "";
+    input.style = 'display: block; margin-bottom: 0.5rem;';
+    
+    container.appendChild(input);
+  }
+</script>
+
+
+    <h2>Preferences and Concerns</h2>
+   <label>Concerns or Special Requests (regarding the photography)</label>
+<textarea 
+  name="Concerns" 
+  placeholder="e.g., Avoid flash, prioritize candid moments, include special guests" 
+  style="display: block; margin-bottom: 0.5rem; font-family: inherit; font-size: 1rem; line-height: 1.5;">
+</textarea>
+
+
+    <label>Inspirations</label>
+<div id="inspirations-container">
+  <input type="url" name="Inspirations" placeholder="e.g., Pinterest board link" style="display: block; margin-bottom: 0.5rem;">
+</div>
+
+<div style="text-align: left; margin-top: 0.3rem;">
+  <button
+    type="button"
+    onclick="addInspiration()"
+    style="
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      color: #333;
+      cursor: pointer;
+    "
+  >
+    Add another
+  </button>
+</div>
+
+<script>
+  function addInspiration() {
+    const container = document.getElementById('inspirations-container');
+    const newInput = document.createElement('input');
+    newInput.type = 'url';
+    newInput.name = 'Inspirations';
+    newInput.style = 'display: block; margin-bottom: 0.5rem;';
+    container.appendChild(newInput);
+  }
+</script>
+
+
+
+
+    <h2>Deliverables</h2>
+    <label>Are you interested in a wedding album?</label>
+<div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
+  <label style="display: flex; align-items: center; gap: 0.3rem;">
+    <input type="radio" name="album" value="yes" id="yes"> Yes
+  </label>
+  <label style="display: flex; align-items: center; gap: 0.3rem;">
+    <input type="radio" name="album" value="no" id="no"> No
+  </label>
+</div>
+
+<div id="album-style" style="display:none; margin-top: 0.5rem;">
+  <label for="style">What style do you prefer? (e.g., Traditional, Photojournalistic, Fine Art, Rustic)</label>
+  <input type="text" id="style" name="style">
+</div>
+
+<script>
+  document.getElementById("yes").addEventListener("change", function() {
+    document.getElementById("album-style").style.display = "block";
+  });
+
+  document.getElementById("no").addEventListener("change", function() {
+    document.getElementById("album-style").style.display = "none";
+  });
+</script>
+
+<label>Are you interested in ordering prints?</label>
+<div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
+  <label style="display: flex; align-items: center; gap: 0.3rem;">
+    <input type="radio" name="prints" value="yes" id="prints-yes"> Yes
+  </label>
+  <label style="display: flex; align-items: center; gap: 0.3rem;">
+    <input type="radio" name="prints" value="no" id="prints-no"> No
+  </label>
+</div>
+
+<div id="prints-details" style="display: none; margin-top: 0.5rem;">
+  <label for="prints-text">What sizes and quantities?</label>
+  <textarea id="prints-text" name="prints" rows="4" style="display: block; width: 100%; margin-top: 0.3rem;"></textarea>
+</div>
+
+<script>
+  const printsYes = document.getElementById('prints-yes');
+  const printsNo = document.getElementById('prints-no');
+  const printsDetails = document.getElementById('prints-details');
+
+  printsYes.addEventListener('change', () => {
+    printsDetails.style.display = 'block';
+  });
+
+  printsNo.addEventListener('change', () => {
+    printsDetails.style.display = 'none';
+  });
+</script>
+
+
+    <button type="submit">Submit Questionnaire</button>
+  </form>
+
+</body>
+</html>
