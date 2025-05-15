@@ -358,30 +358,14 @@
   function addMustHaveShot() {
     const container = document.getElementById('must-have-shots-container');
     const input = document.createElement('input');
-    const count = container.children.length + 1;
+    const count = container.querySelectorAll('input').length + 1;
 
     input.type = 'text';
     input.name = `Must-Have Shot ${count}`;
-    input.placeholder = "";
+    input.placeholder = "e.g., Family group photo, first dance";
     input.style = 'display: block; margin-bottom: 0.5rem;';
     
     container.appendChild(input);
-  }
-</script>
-
-
-<script>
-  function addMustHaveShot() {
-    const container = document.getElementById('must-have-shots-container');
-    const newTextarea = document.createElement('textarea');
-    const count = container.children.length + 1;
-
-    newTextarea.name = `Must-Have Shot ${count}`;
-    newTextarea.placeholder = "";
-    newTextarea.rows = 1;
-    newTextarea.style = 'display: block; margin-bottom: 0.5rem; resize: vertical;';
-    
-    container.appendChild(newTextarea);
   }
 </script>
 
@@ -401,17 +385,6 @@
   placeholder="e.g., Airbnb, 123 That Way St." 
   style="display: block; margin-bottom: 1rem;">
 
-
-    <h2>Additional Services</h2>
-    <label>Are you interested in an engagement photo session? (not included)</label>
-<div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
-  <label style="display: flex; align-items: center; gap: 0.3rem;">
-    <input type="radio" name="Engagement Session" value="Yes"> Yes
-  </label>
-  <label style="display: flex; align-items: center; gap: 0.3rem;">
-    <input type="radio" name="Engagement Session" value="No"> No
-  </label>
-</div>
 
     <h2>Timeline</h2>
    <label>Wedding Day Timeline</label>
@@ -472,9 +445,14 @@
 </textarea>
 
 
-    <label>Inspirations</label>
+   <label>Inspirations</label>
 <div id="inspirations-container">
-  <input type="url" name="Inspirations" placeholder="e.g., Pinterest board link" style="display: block; margin-bottom: 0.5rem;">
+  <input
+    type="url"
+    name="Inspirations"
+    placeholder="e.g., Pinterest board link"
+    style="display: block; margin-bottom: 0.5rem;"
+  >
 </div>
 
 <div style="text-align: left; margin-top: 0.3rem;">
@@ -488,22 +466,90 @@
       border: 1px solid #ccc;
       color: #333;
       cursor: pointer;
+      margin-right: 0.5rem;
     "
   >
     Add another
   </button>
+
+  <button
+    type="button"
+    onclick="document.getElementById('inspiration-file-input').click()"
+    style="
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      color: #333;
+      cursor: pointer;
+    "
+  >
+    Upload Image
+  </button>
+
+  <input
+    type="file"
+    id="inspiration-file-input"
+    accept="image/*"
+    multiple
+    style="display: none;"
+    onchange="handleFileUpload(event)"
+  >
 </div>
+
+<!-- Container for image previews -->
+<div id="image-previews" style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;"></div>
 
 <script>
   function addInspiration() {
-    const container = document.getElementById('inspirations-container');
-    const newInput = document.createElement('input');
-    newInput.type = 'url';
-    newInput.name = 'Inspirations';
-    newInput.style = 'display: block; margin-bottom: 0.5rem;';
-    container.appendChild(newInput);
+    const container = document.getElementById("inspirations-container");
+    const input = document.createElement("input");
+    input.type = "url";
+    input.name = "Inspirations";
+    input.placeholder = "e.g., Pinterest board link";
+    input.style.display = "block";
+    input.style.marginBottom = "0.5rem";
+    container.appendChild(input);
+  }
+
+  function handleFileUpload(event) {
+    const files = event.target.files;
+    const previewContainer = document.getElementById("image-previews");
+
+    // Clear old previews
+    previewContainer.innerHTML = "";
+
+    Array.from(files).forEach(file => {
+      if (file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          img.style.maxWidth = "100px";
+          img.style.maxHeight = "100px";
+          img.style.border = "1px solid #ccc";
+          img.style.borderRadius = "4px";
+          img.style.objectFit = "cover";
+          previewContainer.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
   }
 </script>
+	  
+	  
+    <h2>Additional Services</h2>
+    <label>Are you interested in an engagement photo session? (not included)</label>
+<div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
+  <label style="display: flex; align-items: center; gap: 0.3rem;">
+    <input type="radio" name="Engagement Session" value="Yes"> Yes
+  </label>
+  <label style="display: flex; align-items: center; gap: 0.3rem;">
+    <input type="radio" name="Engagement Session" value="No"> No
+  </label>
+</div>
+
 
 
 
