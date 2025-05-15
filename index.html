@@ -466,7 +466,6 @@
       border: 1px solid #ccc;
       color: #333;
       cursor: pointer;
-      margin-right: 0.5rem;
     "
   >
     Add another
@@ -474,7 +473,7 @@
 
   <button
     type="button"
-    onclick="document.getElementById('inspiration-file-input').click()"
+    onclick="document.getElementById('file-input').click()"
     style="
       padding: 0.3rem 0.6rem;
       font-size: 0.9rem;
@@ -489,18 +488,22 @@
 
   <input
     type="file"
-    id="inspiration-file-input"
+    id="file-input"
     accept="image/*"
     multiple
     style="display: none;"
-    onchange="handleFileUpload(event)"
+    onchange="uploadToCloudinary(event)"
   >
 </div>
 
-<!-- Container for image previews -->
+<!-- Previews + hidden URLs -->
 <div id="image-previews" style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;"></div>
+<div id="cloudinary-hidden-inputs"></div>
 
 <script>
+  const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dcfjmzumt/image/upload';
+  const CLOUDINARY_UPLOAD_PRESET = 'InspirationUploads';
+
   function addInspiration() {
     const container = document.getElementById("inspirations-container");
     const input = document.createElement("input");
@@ -512,28 +515,46 @@
     container.appendChild(input);
   }
 
-  function handleFileUpload(event) {
+  function uploadToCloudinary(event) {
     const files = event.target.files;
     const previewContainer = document.getElementById("image-previews");
-
-    // Clear old previews
-    previewContainer.innerHTML = "";
+    const hiddenInputContainer = document.getElementById("cloudinary-hidden-inputs");
 
     Array.from(files).forEach(file => {
-      if (file.type.startsWith("image/")) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const img = document.createElement("img");
-          img.src = e.target.result;
-          img.style.maxWidth = "100px";
-          img.style.maxHeight = "100px";
-          img.style.border = "1px solid #ccc";
-          img.style.borderRadius = "4px";
-          img.style.objectFit = "cover";
-          previewContainer.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      }
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+      fetch(CLOUDINARY_URL, {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        const imageUrl = data.secure_url;
+
+        // Preview
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.style.maxWidth = '100px';
+        img.style.maxHeight = '100px';
+        img.style.border = '1px solid #ccc';
+        img.style.borderRadius = '4px';
+        img.style.objectFit = 'cover';
+        img.style.marginRight = '0.5rem';
+        previewContainer.appendChild(img);
+
+        // Hidden input
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'Uploaded Image';
+        input.value = imageUrl;
+        hiddenInputContainer.appendChild(input);
+      })
+      .catch(err => {
+        alert('Upload failed. Please try again.');
+        console.error(err);
+      });
     });
   }
 </script>
